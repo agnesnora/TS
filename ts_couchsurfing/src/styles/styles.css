@@ -19,15 +19,26 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
-.logo {
+.nav-bar .logo {
   height: 30px;
   width: 46px;
   background-size: 47px;
   background-image: url("sofa-logo.png");
   margin: 20px;
 }
-
-.user-container {
+.nav-bar .user-container {
   margin: 20px;
+}
+
+.properties {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 150px;
+  margin: 5px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 8px;
 }/*# sourceMappingURL=styles.css.map */
