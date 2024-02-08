@@ -5,8 +5,8 @@ import "./styles/styles.css";
 // can you create that array, making sure to assign the correct Types?
 
 import { showReviewTotal, populateUser } from "./utils";
-const propertyContainer = document.querySelector(".container");
-let isOpen: boolean;
+const propertyContainer = document.querySelector(".properties");
+const footer = document.querySelector(".footer")!;
 
 // Reviews
 const reviews: {
@@ -118,7 +118,14 @@ const propertyCards = properties.map((property) => {
   card.appendChild(image);
   return card;
 });
-
+let currentLocation: [string, string, number] = ["London", "11:35", 17];
+footer.innerHTML =
+  currentLocation[0] +
+  " " +
+  currentLocation[1] +
+  " " +
+  currentLocation[2] +
+  "°";
 propertyContainer?.append(...propertyCards);
 // Functions
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);

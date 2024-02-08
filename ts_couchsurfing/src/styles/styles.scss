@@ -10,6 +10,9 @@ body {
 
 .container {
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nav-bar {
@@ -41,4 +44,13 @@ body {
   border-radius: 20px;
   padding: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0 1px 8px;
+}
+.footer {
+  width: 100%;
+  background-color: lightcoral;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  padding: 30px;
+  color: white;
 }
