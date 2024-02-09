@@ -9,10 +9,12 @@ export function showReviewTotal(
   reviewer: string,
   isLoyalty: LoyaltyUser
 ) {
-  const iconDisplay = isLoyalty === LoyaltyUser.GOLD_USER ? "⭐" : "";
+  const iconDisplay = LoyaltyUser.GOLD_USER ? "⭐" : "";
   reviewTotalDisplay.innerHTML =
-    "review total " +
     value.toString() +
+    " " +
+    "Review" +
+    makeMultiple(value) +
     "| last reviewed by " +
     reviewer +
     " " +
@@ -24,4 +26,20 @@ export function populateUser(isReturning: boolean, userName: string) {
     returningUserDisplay.innerHTML = "back";
   }
   userNameDisplay.innerHTML = userName;
+}
+export function showDetails(
+  value: boolean | Permissions,
+  element: HTMLDivElement,
+  price: number
+) {
+  if (value) {
+    const priceDisplay = document.createElement("div");
+    priceDisplay.innerHTML = price.toString() + "/night";
+    element.appendChild(priceDisplay);
+  }
+}
+export function makeMultiple(value: number): string {
+  if (value > 1) {
+    return "s";
+  } else return "";
 }
