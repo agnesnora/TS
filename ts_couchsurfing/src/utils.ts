@@ -1,5 +1,5 @@
 import { LoyaltyUser } from "./enums";
-
+import { Review } from "./interfaces";
 const reviewTotalDisplay = document.querySelector("#reviews")!;
 const returningUserDisplay = document.querySelector("#returning-user")!;
 const userNameDisplay = document.querySelector("#user")!;
@@ -42,4 +42,13 @@ export function makeMultiple(value: number): string {
   if (value > 1) {
     return "s";
   } else return "";
+}
+export function getTopTwoReviews(reviews: Review[]): {
+  name: string;
+  stars: number;
+  loyaltyUser: LoyaltyUser;
+  date: string;
+}[] {
+  const sortedReviews = reviews.sort((a, b) => b.stars - a.stars);
+  return sortedReviews.slice(0, 2);
 }

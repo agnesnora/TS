@@ -4,19 +4,39 @@ import "./styles/styles.css";
 // Based on what we discussed we need to make up our Property Objects and array,
 // can you create that array, making sure to assign the correct Types?
 
-import { showReviewTotal, populateUser, showDetails } from "./utils";
+import {
+  showReviewTotal,
+  populateUser,
+  showDetails,
+  getTopTwoReviews,
+} from "./utils";
+import { Review } from "./interfaces";
 import { Permissions, LoyaltyUser } from "./enums";
 import { Price, Country } from "./types";
-const propertyContainer = document.querySelector(".properties");
-const footer = document.querySelector(".footer")!;
+const propertyContainer = document.querySelector(".properties")!;
+const reviewContainer = document.querySelector(".reviews")!;
+const container = document.querySelector(".container")!;
+const button = document.querySelector("button")!;
+const footer = document.querySelector(".footer"!);
+// enum Permissions {
+//   ADMIN = "ADMIN",
+//   READ_ONLY = "READ_ONLY",
+// }
 
+// enum LoyaltyUser {
+//   GOLD_USER = "GOLD_USER",
+//   SILVER_USER = "SILVER_USER",
+//   BRONZE_USER = "BRONZE_USER",
+// }
 // Reviews
-const reviews: {
-  name: string;
-  stars: number;
-  loyaltyUser: LoyaltyUser;
-  date: string;
-}[] = [
+
+// interface Review {
+//   name: string;
+//   stars: number;
+//   loyaltyUser: LoyaltyUser;
+//   date: string;
+// }
+const reviews: Review[] = [
   {
     name: "Sheia",
     stars: 5,
@@ -46,19 +66,6 @@ const you = {
   age: 35,
   stayedAt: ["florida-home", "oman-flat", "tokyo-bungalow"],
 };
-// const you: {
-//   firstName: string;
-//   lastName: string;
-//   isReturning: boolean;
-//   age: number;
-//   stayedAt: string[];
-// } = {
-//   firstName: "Bobby",
-//   lastName: "Brown",
-//   isReturning: true,
-//   age: 35,
-//   stayedAt: ["florida-home", "oman-flat", "tokyo-bungalow"],
-// };
 
 //Properties
 
@@ -144,3 +151,19 @@ propertyContainer?.append(...propertyCards);
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 
 populateUser(you.isReturning, you.firstName);
+let count = 0;
+function addReviews(array: Review[]): void {
+  if (!count) {
+    count++;
+    const topTwo = getTopTwoReviews(array);
+    for (let i = 0; i < topTwo.length; i++) {
+      const card = document.createElement("div");
+      card.classList.add("review-card");
+      card.innerHTML = topTwo[i].stars + " stars from " + topTwo[i].name;
+      reviewContainer.appendChild(card);
+    }
+    container.removeChild(button);
+  }
+}
+
+button.addEventListener("click", () => addReviews(reviews));
